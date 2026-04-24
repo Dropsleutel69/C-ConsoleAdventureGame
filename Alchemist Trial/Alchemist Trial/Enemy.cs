@@ -4,13 +4,13 @@ using System.Text;
 
 namespace Alchemist_Trial
 {
-    public class Player
+    public class Enemy
     {
         public string Name { get; set; }
         public int Health { get; set; }
         public int Damage { get; set; }
 
-        public Player (string name, int health, int damage)
+        public Enemy(string name, int health, int damage)
         {
             Name = name;
             Health = health;
@@ -27,11 +27,6 @@ namespace Alchemist_Trial
             }
         }
 
-        public void Heal(int amount)
-        {
-            Health += amount;
-        }
-
         public bool IsAlive()
         {
             return Health > 0;
@@ -39,19 +34,18 @@ namespace Alchemist_Trial
 
         public void ShowStats()
         {
-            Console.WriteLine("------ Player Stats ------");
+            Console.WriteLine("------ Enemy ------");
             Console.WriteLine($"Name: {Name}");
             Console.WriteLine($"Health: {Health}");
             Console.WriteLine($"Damage: {Damage}");
-            Console.WriteLine("--------------------------");
+            Console.WriteLine("-------------------");
         }
 
-        public void Attack(Enemy target)
+        public void Attack(Player target)
         {
-            Console.WriteLine($"{Name} valt de {target.Name} aan!");
+            Console.WriteLine($"{Name} valt jou aan!");
             target.TakeDamage(this.Damage);
-            Console.WriteLine($"{target.Name} verliest {this.Damage} HP.");
+            Console.WriteLine($"Je verliest {this.Damage} HP! Je hebt nog {target.Health} HP over.");
         }
-
     }
 }
