@@ -9,12 +9,16 @@ namespace Alchemist_Trial
         public string Name { get; set; }
         public int Health { get; set; }
         public int Damage { get; set; }
+        public List<Potion> Inventory { get; set; } = new List<Potion>();
 
         public Player (string name, int health, int damage)
         {
             Name = name;
             Health = health;
             Damage = damage;
+
+            Inventory.Add(new Potion("Kleine Healing Potion", "healing", 20));
+            Inventory.Add(new Potion("Vuurfles", "Damage", 15));
         }
 
         public void TakeDamage(int amount)
