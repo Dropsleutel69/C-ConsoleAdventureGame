@@ -17,8 +17,8 @@ namespace Alchemist_Trial
             Health = health;
             Damage = damage;
 
-            Inventory.Add(new Potion("Kleine Healing Potion", "healing", 20));
-            Inventory.Add(new Potion("Vuurfles", "Damage", 15));
+            Inventory.Add(new Potion("Kleine Healing Potion", "Healing", 20));
+            Inventory.Add(new Potion("Vuurfles", "Damage", 25));
         }
 
         public void TakeDamage(int amount)
@@ -43,11 +43,10 @@ namespace Alchemist_Trial
 
         public void ShowStats()
         {
-            Console.WriteLine("------ Player Stats ------");
+            Console.WriteLine("Player Stats");
             Console.WriteLine($"Name: {Name}");
             Console.WriteLine($"Health: {Health}");
             Console.WriteLine($"Damage: {Damage}");
-            Console.WriteLine("--------------------------");
         }
 
         public void Attack(Enemy target)

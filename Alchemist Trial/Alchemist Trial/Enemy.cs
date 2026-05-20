@@ -34,11 +34,10 @@ namespace Alchemist_Trial
 
         public void ShowStats()
         {
-            Console.WriteLine("------ Enemy ------");
+            Console.WriteLine("Enemy");
             Console.WriteLine($"Name: {Name}");
             Console.WriteLine($"Health: {Health}");
             Console.WriteLine($"Damage: {Damage}");
-            Console.WriteLine("-------------------");
         }
 
         public void Attack(Player target)

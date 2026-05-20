@@ -17,9 +17,7 @@ Console.Clear();
 
 while (player.IsAlive() && wolf.IsAlive())
 {
-    Console.WriteLine("==============================");
-    Console.WriteLine($"--- BEURT VAN {player.Name.ToUpper()} ---");
-    Console.WriteLine("==============================");
+    Console.WriteLine($"BEURT VAN {player.Name.ToUpper()}:");
     Console.WriteLine("1. Aanvallen");
     Console.WriteLine("2. Status bekijken");
     Console.WriteLine("3. Potion gebruiken");
@@ -47,10 +45,19 @@ while (player.IsAlive() && wolf.IsAlive())
             {
                 Console.WriteLine($"{i + 1}. {player.Inventory[i].Name}");
             }
+            Console.Write("Welk nummer kies je? ");
+            string potionInput = Console.ReadLine();
 
-            Potion gekozenPotion = player.Inventory[0];
-            gekozenPotion.Use(player, wolf);
-            player.Inventory.Remove(gekozenPotion);
+            if (int.TryParse(potionInput, out int index) && index > 0 && index <= player.Inventory.Count)
+            {
+                Potion gekozenPotion = player.Inventory[index - 1];
+                gekozenPotion.Use(player, wolf);
+                player.Inventory.Remove(gekozenPotion);
+            }
+            else
+            {
+                Console.WriteLine("Ongeldig nummer! Je raakt in de war en gebruikt niks.");
+            }
         }
         else
         {
@@ -64,7 +71,7 @@ while (player.IsAlive() && wolf.IsAlive())
 
     if (wolf.IsAlive())
     {
-        Console.WriteLine("\n--- Beurt van de vijand ---");
+        Console.WriteLine("\nBEURT VAN DE VIJAND");
         wolf.Attack(player);
     }
 
