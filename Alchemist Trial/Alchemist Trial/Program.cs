@@ -5,12 +5,42 @@ Console.Write("What is your name, apprentice? ");
 string playerName = Console.ReadLine();
 
 Player player = new Player(playerName, 100, 15);
-player.ShowStats();
-
 Enemy wolf = new Enemy("Shadow wolf", 40, 8);
+
+bool inMenu = true;
+
+while (inMenu)
+{
+    Console.Clear();
+    Console.WriteLine("Alchemist Trial - MENU");
+    Console.WriteLine("Wat wil je gaan doen?");
+    Console.WriteLine("1. Bekijk je stats");
+    Console.WriteLine("2. Start je avontuur!");
+
+    string menuKeuze = Console.ReadLine();
+
+    if (menuKeuze == "1")
+    {
+        Console.Clear();
+        player.ShowStats();
+
+        Console.WriteLine("\nDruk op een toets om terug te gaan naar het menu");
+        Console.ReadKey();
+    }
+    else if (menuKeuze == "2")
+    {
+        inMenu = false;
+    }
+    else
+    {
+        Console.WriteLine("\nOngeldige keuze! Probeer het nog een keertje");
+        Console.ReadKey();
+    }
+}
+
+Console.Clear();
 Console.WriteLine("\nA wild enemy appears!");
 wolf.ShowStats();
-
 Console.WriteLine("\nDruk op een toets om het gevecht te starten...");
 Console.ReadKey();
 Console.Clear();
@@ -88,3 +118,6 @@ else if (!wolf.IsAlive())
 {
     Console.WriteLine("Je hebt gewonnen!");
 }
+
+Console.WriteLine("\nDruk op een toets om af te sluiten.");
+Console.ReadKey();
