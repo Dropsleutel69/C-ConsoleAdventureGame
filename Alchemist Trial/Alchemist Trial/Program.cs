@@ -117,6 +117,37 @@ if (!player.IsAlive())
 else if (!wolf.IsAlive())
 {
     Console.WriteLine("Je hebt gewonnen!");
+
+    Random random = new Random();
+    int lootKans = random.Next(1, 101);
+
+    Console.WriteLine("\nJe doorzoekt de omgeving van de shadow wolf");
+    Console.WriteLine("Druk op een toets om te kijken wat je gevonden hebt!");
+    Console.ReadKey();
+
+    if (lootKans <= 60)
+    {
+        Potion gevondenPotion;
+
+        if (random.Next(0, 2) == 0)
+        {
+            gevondenPotion = new Potion("Healing Potion", "Healing", 20);
+        }
+        else
+        {
+            gevondenPotion = new Potion("Vuurfles", "Damage", 15);
+        }
+
+        player.Inventory.Add(gevondenPotion);
+
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine($"Wat een geluk! Je vind een {gevondenPotion.Name} op de grond en stopt hem in je tas");
+        Console.ResetColor();
+    }
+    else
+    {
+        Console.WriteLine("Je hebt niks gevonden tussen de resten");
+    }
 }
 
 Console.WriteLine("\nDruk op een toets om af te sluiten.");
