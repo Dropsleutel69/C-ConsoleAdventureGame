@@ -60,6 +60,7 @@ while (player.IsAlive() && wolf.IsAlive())
     Console.WriteLine("1. Aanvallen");
     Console.WriteLine("2. Status bekijken");
     Console.WriteLine("3. Potion gebruiken");
+    Console.WriteLine("4. Spreuk gebruiken");
 
     string keuze = Console.ReadLine();
 
@@ -107,6 +108,38 @@ while (player.IsAlive() && wolf.IsAlive())
         else
         {
             Console.WriteLine("Je hebt geen potions meer!");
+        }
+    }
+    else if (keuze == "4")
+    {
+        Console.Clear();
+        Console.WriteLine("Je spreuekenboek: ");
+        for (int i = 0; i < player.Spellbook.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {player.Spellbook[i].Name} ({player.Spellbook[i].ManaCost} Mana)");
+        }
+        Console.Write("Welke spreuk kies je?");
+        string spellInput = Console.ReadLine();
+
+        if (int.TryParse(spellInput, out int spellIndex) && spellIndex > 0 && spellIndex <= player.Spellbook.Count)
+        {
+            Spell gekozenSpell = player.Spellbook[spellIndex - 1];
+            if (player.Mana >= gekozenSpell.ManaCost)
+            {
+                player.Mana -= gekozenSpell.ManaCost;
+                gekozenSpell.Cast(player, wolf);
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Niet genoeg mana! Je hebt {player.Mana} mana, maar {gekozenSpell.Name} kost {gekozenSpell.ManaCost} mana");
+                Console.ResetColor();
+                Console.WriteLine("Je verliest je beurt door deze mislukte poging!");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Mislukt! Je twijfelt over de magische woorden en doet niks!");
         }
     }
     else
@@ -259,6 +292,7 @@ else if (reisKeuze == "1")
             Console.WriteLine("1. Aanvallen");
             Console.WriteLine("2. Status bekijken");
             Console.WriteLine("3. Potion gebruiken");
+            Console.WriteLine("4. Spreuk gebruiken");
 
             string gevechtKeuze = Console.ReadLine();
 
@@ -295,6 +329,38 @@ else if (reisKeuze == "1")
                     else
                     {
                         Console.WriteLine("Ongeldig nummer! Je raakt in de war en gebruikt niks.");
+                    }
+                }
+                else if (gevechtKeuze == "4") 
+                {
+                    Console.Clear();
+                    Console.WriteLine("--- JE SPELLBOOK ---");
+                    for (int i = 0; i < player.Spellbook.Count; i++)
+                    {
+                        Console.WriteLine($"{i + 1}. {player.Spellbook[i].Name} ({player.Spellbook[i].ManaCost} Mana)");
+                    }
+                    Console.Write("Welke spreuk kies je?: ");
+                    string spellIn = Console.ReadLine();
+
+                    if (int.TryParse(spellIn, out int sIndex) && sIndex > 0 && sIndex <= player.Spellbook.Count)
+                    {
+                        Spell gekozenSpell = player.Spellbook[sIndex - 1];
+
+                        if (player.Mana >= gekozenSpell.ManaCost)
+                        {
+                            player.Mana -= gekozenSpell.ManaCost;
+                            gekozenSpell.Cast(player, tovenaar); 
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine($"Niet genoeg mana! ({player.Mana}/{gekozenSpell.ManaCost})");
+                            Console.ResetColor();
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Je twijfelt en doet niks.");
                     }
                 }
                 else

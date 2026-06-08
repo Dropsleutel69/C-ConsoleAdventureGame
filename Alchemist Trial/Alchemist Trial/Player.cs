@@ -15,6 +15,10 @@ namespace Alchemist_Trial
         // De inventory is een lijst die alleen Potion objecten kan bevatten.
         public List<Potion> Inventory { get; set; } = new List<Potion>();
 
+        public int Mana { get; set; }
+        public int MaxMana { get; set; }
+        public List<Spell> Spellbook { get; set; } = new List<Spell>();
+
         // CONSTRUCTOR 
         // Deze methode draait één keer zodra er een new Player wordt aangemaakt.
         // Hiermee zetten we de beginwaarden of start stats van de speler klaar.
@@ -24,9 +28,15 @@ namespace Alchemist_Trial
             Health = health;
             Damage = damage;
 
+            MaxMana = 50;
+            Mana = MaxMana;
+
             // De speler begint standaard altijd met deze twee potions in zijn tas.
             Inventory.Add(new HealingPotion("Kleine Healing Potion", 20));
             Inventory.Add(new DamagePotion("Vuurfles", 25));
+
+            Spellbook.Add(new Fireball("Vuurbal", 15, 30));
+            Spellbook.Add(new StrengthSpell("Reuzenkracht", 20, 5));
         }
 
         // METHODES ALS FUNCTIES EN ACTIES 
@@ -61,6 +71,7 @@ namespace Alchemist_Trial
             Console.WriteLine("Player Stats");
             Console.WriteLine($"Name: {Name}");
             Console.WriteLine($"Health: {Health}");
+            Console.WriteLine($"Mana: {Mana}/{MaxMana}");
             Console.WriteLine($"Damage: {Damage}");
         }
 
