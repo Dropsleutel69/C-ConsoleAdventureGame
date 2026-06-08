@@ -25,8 +25,8 @@ namespace Alchemist_Trial
             Damage = damage;
 
             // De speler begint standaard altijd met deze twee potions in zijn tas.
-            Inventory.Add(new Potion("Kleine Healing Potion", "Healing", 20));
-            Inventory.Add(new Potion("Vuurfles", "Damage", 25));
+            Inventory.Add(new HealingPotion("Kleine Healing Potion", 20));
+            Inventory.Add(new DamagePotion("Vuurfles", 25));
         }
 
         // METHODES ALS FUNCTIES EN ACTIES 

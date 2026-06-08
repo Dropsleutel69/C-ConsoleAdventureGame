@@ -151,11 +151,11 @@ else if (!wolf.IsAlive())
         // 50/50 kans op een Healing Potion of een Vuurfles
         if (random.Next(0, 2) == 0)
         {
-            gevondenPotion = new Potion("Healing Potion", "Healing", 20);
+            gevondenPotion = new HealingPotion("Healing Potion", 20);
         }
         else
         {
-            gevondenPotion = new Potion("Vuurfles", "Damage", 15);
+            gevondenPotion = new DamagePotion("Vuurfles", 15);
         }
 
         player.Inventory.Add(gevondenPotion);
@@ -225,7 +225,7 @@ else if (reisKeuze == "1")
     Console.ForegroundColor = ConsoleColor.Magenta;
     Console.WriteLine("Tovenaar: 'Praatjes vullen geen gaatjes!'");
     System.Threading.Thread.Sleep(1500);
-    Console.WriteLine("Tovenaar: 'Je daagt mij uis, of je scheert je nu weg!'");
+    Console.WriteLine("Tovenaar: 'Je daagt mij uit, of je scheert je nu weg!'");
     Console.ResetColor();
     System.Threading.Thread.Sleep(1500);
     Console.WriteLine("Wat doe je?");
@@ -335,11 +335,11 @@ else if (reisKeuze == "1")
             Console.WriteLine("- 3x Healing Potion");
             Console.ResetColor();
 
-            player.Inventory.Add(new Potion("Vuurfles", "Damage", 15));
-            player.Inventory.Add(new Potion("Vuurfles", "Damage", 15));
-            player.Inventory.Add(new Potion("Healing Potion", "Healing", 20));
-            player.Inventory.Add(new Potion("Healing Potion", "Healing", 20));
-            player.Inventory.Add(new Potion("Healing Potion", "Healing", 20));
+            player.Inventory.Add(new DamagePotion("Vuurfles", 15));
+            player.Inventory.Add(new DamagePotion("Vuurfles", 15));
+            player.Inventory.Add(new HealingPotion("Healing Potion", 20));
+            player.Inventory.Add(new HealingPotion("Healing Potion", 20));
+            player.Inventory.Add(new HealingPotion("Healing Potion", 20));
 
             Console.WriteLine("\nDruk op een toets om je gigantische buit te inspecteren en je tas te tellen...");
             Console.ReadKey();
