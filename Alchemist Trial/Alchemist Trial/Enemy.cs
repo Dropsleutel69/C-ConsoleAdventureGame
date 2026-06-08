@@ -54,7 +54,7 @@ namespace Alchemist_Trial
         // Deze methode linkt de Enemy klasse direct aan de Player klasse.
         public void Attack(Player target)
         {
-            Console.WriteLine($"{Name} valt jou aan!");
+            Console.WriteLine($"{Name} valt jou aan!"); // Hallo Jamiro!
 
             // De schade van deze specifieke vijand wordt doorgegeven aan de TakeDamage methode van de speler.
             target.TakeDamage(this.Damage);
